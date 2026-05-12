@@ -117,9 +117,9 @@
         --badge-notification-background: var(--accent-new);
         --badge-text-default: var(--text-0);
         --bg-surface-overlay-tmp: var(--bg-3);
-        --bg-surface-raised: blue;
-        --border-feedback-critical: magenta;
-        --border-focus: red;
+        --bg-surface-raised: var(--bg-3);
+        --border-feedback-critical: var(--border);
+        --border-focus: var(--border);
         --border-muted: var(--border-light);
         --border-normal: var(--border);
         --border-strong: var(--border);
@@ -362,7 +362,7 @@
         --icon-strong: var(--text-3);
         --icon-subtle: var(--text-4);
         --icon-transparent: lime;
-        --icon-voice-muted: var(--accent-2);
+        --icon-voice-muted: var(--accent-new);
         --input-background-default: var(--bg-3);
         --input-background-error-default: color-mix(in hsl, var(--red-2), transparent 90%);
         --input-border-active: var(--accent-2);
@@ -404,7 +404,7 @@
         --modal-background: var(--bg-4);
         --modal-footer-background: var(--bg-4);
         --navigator-header-tint: lime;
-        --notice-background-critical: var(--red-3);
+        --notice-background-critical: var(--bg-3);
         --notice-background-info: var(--blue-3);
         --notice-background-positive: var(--green-3);
         --notice-background-warning: var(--yellow-3);
@@ -424,9 +424,9 @@
         --profile-gradient-role-pill-background: blue;
         --profile-gradient-role-pill-border: magenta;
         --profile-gradient-section-box: red;
-        --radio-background-active: var(--bg-2);
-        --radio-background-default: var(--bg-3);
-        --radio-background-hover: var(--bg-2);
+        --radio-background-active: var(--bg-1);
+        --radio-background-default: var(--bg-2);
+        --radio-background-hover: var(--bg-1);
         --radio-background-selected-default: var(--accent-2);
         --radio-background-selected-hover: var(--accent-3);
         --radio-border-active: var(--border);
@@ -477,9 +477,9 @@
         --redesign-button-tertiary-text: red;
         --scrollbar-auto-scrollbar-color-thumb: yellow;
         --scrollbar-auto-scrollbar-color-track: lime;
-        --scrollbar-auto-thumb: var(--bg-3);
+        --scrollbar-auto-thumb: var(--bg-1);
         --scrollbar-auto-track: transparent;
-        --scrollbar-thin-thumb: var(--bg-3);
+        --scrollbar-thin-thumb: var(--bg-1);
         --scrollbar-thin-track: transparent;
         --spine-default: var(--text-5);
         --spoiler-hidden-background: yellow;
@@ -508,7 +508,7 @@
         --switch-thumb-icon-active: blue;
         --switch-thumb-icon-default: magenta;
         --text-brand: var(--accent-1);
-        --text-code: red;
+        /* --text-code: red;
         --text-code-addition: yellow;
         --text-code-builtin: lime;
         --text-code-bullet: blue;
@@ -519,7 +519,7 @@
         --text-code-string: blue;
         --text-code-tag: magenta;
         --text-code-title: red;
-        --text-code-variable: yellow;
+        --text-code-variable: yellow; */
         --text-default: var(--text-3);
         --text-feedback-critical: var(--red-1);
         --text-feedback-info: var(--accent-1);
@@ -550,6 +550,7 @@
         --white: var(--text-0);
         --white-500: var(--text-0);
 
+        --brand-260: var(--accent-2);
         --brand-360: var(--accent-2);
         --brand-500: var(--accent-2);
         --blurple-50: var(--accent-2);
@@ -567,6 +568,12 @@
         --white-500: var(--text-1);
     }
 
+    /* User profile sidebar */
+    .user-profile-sidebar .inner_c0bea0 {
+        --user-profile-overlay-background: var(--bg-3);
+        --profile-gradient-secondary-color: var(--bg-4);
+    }
+
     ::placeholder {
         color: var(--text-5);
     }
@@ -576,7 +583,7 @@
     }
 
     .modeUnreadImportant__2ea32 .icon__2ea32,
-        .wrapper__2ea32:hover .icon__2ea32 /* correct channel icon color */ {
+    .wrapper__2ea32:hover .icon__2ea32 /* correct channel icon color */ {
         color: var(--text-3);
     }
 
@@ -606,11 +613,22 @@
     }
 
     .quickSelectPopout_ebaca5 /* dm vc region select popout */,
-        .participantsButton__211d1 /* vc participants button */,
-        .voiceBar__7aaec /* n in voice bar (channel list) */,
-        .mainCard_f369db /* form posts */,
-        .accountProfileCard__1fed1 /* account settings profile background */ {
+    .participantsButton__211d1 /* vc participants button */,
+    .voiceBar__7aaec /* n in voice bar (channel list) */,
+    .mainCard_f369db /* form posts */,
+    .accountProfileCard_a9178b /* account settings profile background */ {
         background-color: var(--bg-3);
+    }
+
+    /* User settings search bar coloring */
+    .fixedContent__409aa {
+        &::after {
+            background: linear-gradient(to bottom, var(--bg-3), transparent);
+        }
+
+        .searchBarContainer_cf016e .wrapper__72c38 {
+            background-color: var(--bg-4);
+        }
     }
 
     .colorable_f1ceac.primaryDark_f1ceac,
@@ -871,10 +889,6 @@
         background: var(--background-message-highlight);
     }
 
-    .container__8a031 /* modal background */ {
-        background-color: var(--bg-4);
-    }
-
     .flash__03436[data-flash='true'] /* reply message flash */ {
         background: var(--reply);
     }
@@ -939,7 +953,7 @@
         background: var(--bg-3);
     }
 
-    ::selection,
+    :is(div, span, code, a)::selection,
     .highlight {
         background: var(--accent-3);
         color: var(--text-0);
@@ -959,8 +973,8 @@
         }
 
         /* Clicked state */
-        &:has(> svg:not([style="left: 1px;"])) {
-            &:has(rect:not([height="16"])) {
+        &:has(> svg:not([style='left: 1px;'])) {
+            &:has(rect:not([height='16'])) {
                 background-color: var(--accent-5) !important;
             }
 
@@ -972,5 +986,15 @@
 
     .selectedPill__1464f {
         border-color: var(--accent-2) !important;
+    }
+
+    /* Follow channel footer */
+    .wrapper__44df5 {
+        background-color: var(--bg-3);
+    }
+
+    /* VC popout background */
+    #app-mount .popout__0bd4a {
+        background-color: var(--bg-3);
     }
 }
